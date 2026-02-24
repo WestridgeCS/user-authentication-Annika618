@@ -1,0 +1,36 @@
+<%- include('../partials/_layoutTop', { title: 'Manager — Users' }) %>
+<%- include('../partials/_nav', { heading: 'Manager Dashboard', subheading: 'View and manage user accounts.' }) %>
+
+<main class="card pad">
+  <h2 class="h2">Users</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th class="right">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.forEach(u => { %>
+        <tr>
+          <td><%= u.name %></td>
+          <td><%= u.email %></td>
+          <td><span class="pill"><%= u.role %></span></td>
+          <td class="right">
+            <a class="link" href="/manager/users/<%= u._id %>/edit">Edit</a>
+            <% if (currentUser._id.toString() !== u._id.toString()) { %>
+              <form class="inline" action="/manager/users/<%= u._id %>/delete" method="POST">
+                <button class="link danger" type="submit">Delete</button>
+              </form>
+            <% } %>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</main>
+
+<%- include('../partials/_layoutBottom') %>

@@ -1,0 +1,29 @@
+<%- include('../partials/_layoutTop', { title: 'Create account' }) %>
+<%- include('../partials/_nav', { heading: 'Create account', subheading: 'Sign up to access your profile.' }) %>
+
+<main class="card pad">
+  <h2 class="h2">Create account</h2>
+
+  <% if (error) { %>
+    <div class="alert"><%= error %></div>
+  <% } %>
+
+  <form class="form" action="/register" method="POST">
+    <label class="label" for="name">Name</label>
+    <input class="input" id="name" name="name" type="text" value="<%= form.name || '' %>" required />
+
+    <label class="label" for="email">Email</label>
+    <input class="input" id="email" name="email" type="email" value="<%= form.email || '' %>" required />
+
+    <label class="label" for="password">Password</label>
+    <input class="input" id="password" name="password" type="password" minlength="8" required />
+
+    <button class="btn" type="submit">Create account</button>
+  </form>
+
+  <p class="muted" style="margin-top: 12px;">
+    Already have an account? <a class="link" href="/login">Log in</a>
+  </p>
+</main>
+
+<%- include('../partials/_layoutBottom') %>

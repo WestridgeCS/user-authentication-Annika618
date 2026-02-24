@@ -1,0 +1,31 @@
+<%- include('../partials/_layoutTop', { title: 'Profile' }) %>
+<%- include('../partials/_nav', { heading: 'Profile', subheading: 'Your account details.' }) %>
+
+<main class="card pad">
+  <h2 class="h2">Welcome, <%= currentUser.name %> 👋</h2>
+
+  <div class="infoGrid">
+    <div class="infoCard">
+      <div class="infoLabel">Name</div>
+      <div class="infoValue"><%= currentUser.name %></div>
+    </div>
+
+    <div class="infoCard">
+      <div class="infoLabel">Email</div>
+      <div class="infoValue"><%= currentUser.email %></div>
+    </div>
+
+    <div class="infoCard">
+      <div class="infoLabel">Role</div>
+      <div class="infoValue"><%= currentUser.role %></div>
+    </div>
+  </div>
+
+  <% if (currentUser.role === 'manager') { %>
+    <div style="margin-top: 16px;">
+      <a class="btn" href="/manager/users">Go to Manager Dashboard</a>
+    </div>
+  <% } %>
+</main>
+
+<%- include('../partials/_layoutBottom') %>

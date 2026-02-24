@@ -1,0 +1,26 @@
+<%- include('../partials/_layoutTop', { title: 'Log in' }) %>
+<%- include('../partials/_nav', { heading: 'Log in', subheading: 'Use your email + password.' }) %>
+
+<main class="card pad">
+  <h2 class="h2">Log in</h2>
+
+  <% if (error) { %>
+    <div class="alert"><%= error %></div>
+  <% } %>
+
+  <form class="form" action="/login" method="POST">
+    <label class="label" for="email">Email</label>
+    <input class="input" id="email" name="email" type="email" value="<%= form.email || '' %>" required />
+
+    <label class="label" for="password">Password</label>
+    <input class="input" id="password" name="password" type="password" required />
+
+    <button class="btn" type="submit">Log in</button>
+  </form>
+
+  <p class="muted" style="margin-top: 12px;">
+    Don’t have an account? <a class="link" href="/register">Create one</a>
+  </p>
+</main>
+
+<%- include('../partials/_layoutBottom') %>

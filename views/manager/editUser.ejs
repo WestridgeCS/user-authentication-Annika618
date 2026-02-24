@@ -1,0 +1,31 @@
+<%- include('../partials/_layoutTop', { title: 'Edit user' }) %>
+<%- include('../partials/_nav', { heading: 'Edit User', subheading: 'Update name, email, and role.' }) %>
+
+<main class="card pad">
+  <h2 class="h2">Edit user</h2>
+
+  <% if (error) { %>
+    <div class="alert"><%= error %></div>
+  <% } %>
+
+  <form class="form" action="/manager/users/<%= user._id %>/update" method="POST">
+    <label class="label" for="name">Name</label>
+    <input class="input" id="name" name="name" type="text" value="<%= user.name %>" required />
+
+    <label class="label" for="email">Email</label>
+    <input class="input" id="email" name="email" type="email" value="<%= user.email %>" required />
+
+    <label class="label" for="role">Role</label>
+    <select class="input" id="role" name="role" required>
+      <option value="user" <%= user.role === 'user' ? 'selected' : '' %>>user</option>
+      <option value="manager" <%= user.role === 'manager' ? 'selected' : '' %>>manager</option>
+    </select>
+
+    <div class="row">
+      <button class="btn" type="submit">Save</button>
+      <a class="btn btnGhost" href="/manager/users">Cancel</a>
+    </div>
+  </form>
+</main>
+
+<%- include('../partials/_layoutBottom') %>
